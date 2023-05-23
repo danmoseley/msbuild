@@ -11,7 +11,7 @@ namespace Microsoft.Build.Logging.LiveLogger
     {
         public static string ANSIRegex = @"\x1b(?:[@-Z\-_]|\[[0-?]*[ -\/]*[@-~]|(?:\]8;;.*?\x1b\\))";
         // TODO: This should replace ANSIRegex once LiveLogger's API is internal
-        public static Regex ANSIRegexRegex = new Regex(ANSIRegex);
+        public static Regex ANSIRegexRegex = new Regex(ANSIRegex, RegexOptions.CultureInvariant);
         public static string ANSIRemove(string text)
         {
             return ANSIRegexRegex.Replace(text, "");

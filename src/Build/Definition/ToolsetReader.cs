@@ -200,7 +200,7 @@ namespace Microsoft.Build.Evaluation
                         var xbuildToolsetsDir = Path.Combine(libraryPath, $"xbuild{Path.DirectorySeparatorChar}");
                         if (FileSystems.Default.DirectoryExists(xbuildToolsetsDir))
                         {
-                            var r = new Regex(Regex.Escape(xbuildToolsetsDir) + @"\d+\.\d+");
+                            var r = new Regex(Regex.Escape(xbuildToolsetsDir) + @"\d+\.\d+", RegexOptions.CultureInvariant);
                             foreach (var d in Directory.GetDirectories(xbuildToolsetsDir).Where(d => r.IsMatch(d)))
                             {
                                 var version = Path.GetFileName(d);

@@ -1966,7 +1966,7 @@ namespace Microsoft.Build.CommandLine
                                 {
                                     // Allow special case to support a path relative to the .rsp file being processed.
                                     responseFileLine = Regex.Replace(responseFileLine, responseFilePathReplacement,
-                                        responseFileDirectory, RegexOptions.IgnoreCase);
+                                        responseFileDirectory, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
                                     // treat each line of the response file like a command line i.e. args separated by whitespace
                                     argsFromResponseFile.AddRange(QuotingUtilities.SplitUnquoted(Environment.ExpandEnvironmentVariables(responseFileLine)));

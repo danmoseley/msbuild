@@ -1203,7 +1203,7 @@ namespace Microsoft.Build.UnitTests.Evaluation
             \s*\)";
 
         // regular expression used to match item vectors, including those embedded in strings
-        private static readonly Regex s_itemVectorPattern = new Regex(itemVectorSpecification, RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture);
+        private static readonly Regex s_itemVectorPattern = new Regex(itemVectorSpecification, RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.CultureInvariant);
 
         // regular expression used to match a list of item vectors that have no separator specification -- the item vectors
         // themselves may be optionally separated by semi-colons, or they might be all jammed together
@@ -1211,7 +1211,7 @@ namespace Microsoft.Build.UnitTests.Evaluation
             new Regex(@"^\s*(;\s*)*(" +
                       itemVectorWithoutSeparatorSpecification +
                       @"\s*(;\s*)*)+$",
-                      RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture);
+                      RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.CultureInvariant);
 
         // the leading characters that indicate the start of an item metadata reference
         private const string itemMetadataPrefix = "%(";
@@ -1224,7 +1224,7 @@ namespace Microsoft.Build.UnitTests.Evaluation
             \s*\)";
 
         // regular expression used to match item metadata references embedded in strings
-        private static readonly Regex s_itemMetadataPattern = new Regex(itemMetadataSpecification, RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture);
+        private static readonly Regex s_itemMetadataPattern = new Regex(itemMetadataSpecification, RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.CultureInvariant);
 
         // description of an item vector with a transform, split into two halves along the transform expression
         private const string itemVectorWithTransformLHS = @"@\(\s*" + ProjectWriter.itemTypeOrMetadataNameSpecification + @"\s*->\s*'[^']*";
@@ -1236,7 +1236,7 @@ namespace Microsoft.Build.UnitTests.Evaluation
             new Regex(@"((?<=" + itemVectorWithTransformLHS + @")" + itemMetadataSpecification + @"(?!" + itemVectorWithTransformRHS + @")) |
                         ((?<!" + itemVectorWithTransformLHS + @")" + itemMetadataSpecification + @"(?=" + itemVectorWithTransformRHS + @")) |
                         ((?<!" + itemVectorWithTransformLHS + @")" + itemMetadataSpecification + @"(?!" + itemVectorWithTransformRHS + @"))",
-                        RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture);
+                        RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.CultureInvariant);
 
         /// <summary>
         /// Looks through a single parameter of the batchable object, and finds all references to item metadata

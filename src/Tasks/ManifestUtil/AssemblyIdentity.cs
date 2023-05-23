@@ -165,7 +165,7 @@ namespace Microsoft.Build.Tasks.Deployment.ManifestUtilities
         public static AssemblyIdentity FromAssemblyName(string assemblyName)
         {
             // NOTE: We're not using System.Reflection.AssemblyName class here because we need ProcessorArchitecture and Type attributes.
-            Regex re = new Regex("^(?<name>[^,]*)(, Version=(?<version>[^,]*))?(, Culture=(?<culture>[^,]*))?(, PublicKeyToken=(?<pkt>[^,]*))?(, ProcessorArchitecture=(?<pa>[^,]*))?(, Type=(?<type>[^,]*))?");
+            Regex re = new Regex("^(?<name>[^,]*)(, Version=(?<version>[^,]*))?(, Culture=(?<culture>[^,]*))?(, PublicKeyToken=(?<pkt>[^,]*))?(, ProcessorArchitecture=(?<pa>[^,]*))?(, Type=(?<type>[^,]*))?", RegexOptions.CultureInvariant);
             Match m = re.Match(assemblyName);
             string name = m.Result("${name}");
             string version = m.Result("${version}");

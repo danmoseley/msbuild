@@ -46,7 +46,7 @@ namespace Microsoft.Build.Construction
                 + "\\s*,\\s*" // Any amount of whitespace plus "," plus any amount of whitespace
                 + "\"(?<PROJECTGUID>.*)\""
                 + "$", // End-of-line
-                RegexOptions.Compiled));
+                RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
         // An example of a property line looks like this:
         //      AspNetCompiler.VirtualPath = "/webprecompile"
@@ -60,7 +60,7 @@ namespace Microsoft.Build.Construction
                 + "\\s*=\\s*" // Any amount of whitespace plus "=" plus any amount of whitespace
                 + "(?<PROPERTYVALUE>.*)"
                 + "$", // End-of-line
-                RegexOptions.Compiled));
+                RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
         internal const int slnFileMinUpgradableVersion = 7; // Minimum version for MSBuild to give a nice message
         internal const int slnFileMinVersion = 9; // Minimum version for MSBuild to actually do anything useful

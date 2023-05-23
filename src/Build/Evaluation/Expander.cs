@@ -3012,7 +3012,7 @@ namespace Microsoft.Build.Evaluation
             /// </summary>
             internal static readonly Lazy<Regex> ItemMetadataPattern = new Lazy<Regex>(
                 () => new Regex(ItemMetadataSpecification,
-                    RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled));
+                    RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
             /// <summary>
             /// Name of the group matching the "name" of a metadatum.
@@ -3040,7 +3040,7 @@ namespace Microsoft.Build.Evaluation
                     ItemMetadataSpecification + @"(?=" + ItemVectorWithTransformRHS + @")) | ((?<!" +
                     ItemVectorWithTransformLHS + @")" + ItemMetadataSpecification + @"(?!" +
                     ItemVectorWithTransformRHS + @"))",
-                    RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled));
+                    RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
             /// <summary>
             /// Complete description of an item metadata reference, including the optional qualifying item type.

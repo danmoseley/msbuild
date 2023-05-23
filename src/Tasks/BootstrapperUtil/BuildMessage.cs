@@ -15,7 +15,7 @@ namespace Microsoft.Build.Tasks.Deployment.Bootstrapper
     /// </summary>
     public class BuildMessage : IBuildMessage
     {
-        private static readonly Regex s_msbuildMessageCodePattern = new Regex(@"(\d+)$");
+        private static readonly Regex s_msbuildMessageCodePattern = new Regex(@"(\d+)$", RegexOptions.CultureInvariant);
 
         private BuildMessage(BuildMessageSeverity severity, string message, string helpKeyword, string helpCode)
         {

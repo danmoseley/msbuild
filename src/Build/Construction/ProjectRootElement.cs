@@ -61,7 +61,7 @@ namespace Microsoft.Build.Construction
         /// <summary>
         /// Used to determine if a file is an empty XML file if it ONLY contains an XML declaration like &lt;?xml version="1.0" encoding="utf-8"?&gt;.
         /// </summary>
-        private static readonly Lazy<Regex> XmlDeclarationRegEx = new Lazy<Regex>(() => new Regex(@"\A\s*\<\?\s*xml.*\?\>\s*\Z"), isThreadSafe: true);
+        private static readonly Lazy<Regex> XmlDeclarationRegEx = new Lazy<Regex>(() => new Regex(@"\A\s*\<\?\s*xml.*\?\>\s*\Z", RegexOptions.CultureInvariant), isThreadSafe: true);
 
         /// <summary>
         /// The default encoding to use / assume for a new project.

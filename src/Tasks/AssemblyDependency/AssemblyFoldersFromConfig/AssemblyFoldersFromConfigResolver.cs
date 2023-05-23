@@ -27,7 +27,7 @@ namespace Microsoft.Build.Tasks.AssemblyFoldersFromConfig
             () => new Regex(
                 AssemblyResolutionConstants.assemblyFoldersFromConfigSentinel +
                 "(?<ASSEMBLYFOLDERCONFIGFILE>[^,]*),(?<TARGETRUNTIMEVERSION>[^,]*)}",
-                RegexOptions.IgnoreCase | RegexOptions.Compiled));
+                RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
         /// <summary>
         /// Whether or not the search path could be cracked.

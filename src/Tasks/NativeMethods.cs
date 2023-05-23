@@ -1245,8 +1245,8 @@ namespace Microsoft.Build.Tasks
             /// Regex for directory version parsing
             /// </summary>
             private static readonly Regex s_assemblyVersionRegex = new Regex(
-                @"^([.\d]+)_([^_]*)_([a-fA-F\d]{16})$",
-                RegexOptions.CultureInvariant | RegexOptions.Compiled);
+                @"^([.\d]+)_([^_]*)_([a-f\d]{16})$",
+                RegexOptions.IgnoreCase | RegexOptions.CultureInvariant | RegexOptions.Compiled);
 
             /// <summary>
             /// The IAssemblyEnum interface which allows us to ask for the next assembly from the GAC enumeration.

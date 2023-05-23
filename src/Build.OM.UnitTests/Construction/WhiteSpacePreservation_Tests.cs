@@ -448,13 +448,13 @@ multi-line comment here
             // Each OS uses its own line endings. Using WSL on Windows leads to LF on Windows which messes up the tests. This happens due to git LF <-> CRLF conversions.
             if (NativeMethodsShared.IsWindows)
             {
-                projectContents = Regex.Replace(projectContents, @"(?<!\r)\n", "\r\n", RegexOptions.Multiline);
-                updatedProject = Regex.Replace(updatedProject, @"(?<!\r)\n", "\r\n", RegexOptions.Multiline);
+                projectContents = Regex.Replace(projectContents, @"(?<!\r)\n", "\r\n", RegexOptions.Multiline | RegexOptions.CultureInvariant);
+                updatedProject = Regex.Replace(updatedProject, @"(?<!\r)\n", "\r\n", RegexOptions.Multiline | RegexOptions.CultureInvariant);
             }
             else
             {
-                projectContents = Regex.Replace(projectContents, @"\r\n", "\n", RegexOptions.Multiline);
-                updatedProject = Regex.Replace(updatedProject, @"\r\n", "\n", RegexOptions.Multiline);
+                projectContents = Regex.Replace(projectContents, @"\r\n", "\n", RegexOptions.Multiline | RegexOptions.CultureInvariant);
+                updatedProject = Regex.Replace(updatedProject, @"\r\n", "\n", RegexOptions.Multiline | RegexOptions.CultureInvariant);
             }
 
             // Note: This test will write the project file to disk rather than using in-memory streams.
@@ -503,7 +503,7 @@ multi-line comment here
             if (Environment.NewLine.Length == 2)
             {
                 // Windows, ensure that \n doesn't exist by itself
-                var crlfCount = Regex.Matches(projectResults, @"\r\n", RegexOptions.Multiline).Count;
+                var crlfCount = Regex.Matches(projectResults, @"\r\n", RegexOptions.Multiline | RegexOptions.CultureInvariant).Count;
                 var nlCount = Regex.Matches(projectResults, @"\n").Count;
 
                 // Compare number of \r\n to number of \n, they should be equal.
@@ -512,7 +512,7 @@ multi-line comment here
             else
             {
                 // Ensure we did not add \r\n
-                Assert.Empty(Regex.Matches(projectResults, @"\r\n", RegexOptions.Multiline));
+                Assert.Empty(Regex.Matches(projectResults, @"\r\n", RegexOptions.Multiline | RegexOptions.CultureInvariant));
             }
         }
     }

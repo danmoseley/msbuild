@@ -1056,7 +1056,7 @@ namespace InlineCode {{
             }
         }
 
-        private static readonly Regex RuntimeVersionLine = new Regex("Runtime Version:.*");
+        private static readonly Regex RuntimeVersionLine = new Regex("Runtime Version:.*", RegexOptions.CultureInvariant);
 
         private static string NormalizeRuntime(string input)
         {

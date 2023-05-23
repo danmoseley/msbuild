@@ -292,7 +292,7 @@ namespace Microsoft.Build.Internal
         }
 
         // used to find the xmlns attribute
-        private static readonly Regex s_xmlnsPattern = new Regex("xmlns=\"[^\"]*\"\\s*");
+        private static readonly Regex s_xmlnsPattern = new Regex("xmlns=\"[^\"]*\"\\s*", RegexOptions.CultureInvariant);
 
         /// <summary>
         /// Removes the xmlns attribute from an XML string.

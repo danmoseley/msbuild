@@ -130,7 +130,7 @@ namespace Microsoft.Build.Framework
                     processFileName.Equals(s, StringComparison.OrdinalIgnoreCase)))
                 {
                     // Check if we're in a VS installation
-                    if (Regex.IsMatch(processName, $@".*\\MSBuild\\Current\\Bin\\.*MSBuild(?:TaskHost)?\.exe", RegexOptions.IgnoreCase))
+                    if (Regex.IsMatch(processName, $@".*\\MSBuild\\Current\\Bin\\.*MSBuild(?:TaskHost)?\.exe", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant))
                     {
                         return GetVsRootFromMSBuildAssembly(processName);
                     }

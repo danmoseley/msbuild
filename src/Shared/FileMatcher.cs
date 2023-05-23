@@ -51,7 +51,7 @@ namespace Microsoft.Build.Shared
         /// </summary>
         private static readonly char[] s_invalidPathChars = Path.GetInvalidPathChars();
 
-        public const RegexOptions DefaultRegexOptions = RegexOptions.IgnoreCase;
+        public const RegexOptions DefaultRegexOptions = RegexOptions.IgnoreCase | RegexOptions.CultureInvariant;
 
         private readonly GetFileSystemEntries _getFileSystemEntries;
 
@@ -2160,7 +2160,7 @@ namespace Microsoft.Build.Shared
                 matchWithRegex ? null : filenamePart,
                 directoryPattern,
                 // if using the file pattern, ignore the regular expression
-                matchWithRegex ? new Regex(RegularExpressionFromFileSpec(oldFixedDirectoryPart, wildcardDirectoryPart, filenamePart), RegexOptions.IgnoreCase) : null,
+                matchWithRegex ? new Regex(RegularExpressionFromFileSpec(oldFixedDirectoryPart, wildcardDirectoryPart, filenamePart), RegexOptions.IgnoreCase | RegexOptions.CultureInvariant) : null,
                 needsRecursion);
 
             result.SearchData = searchData;

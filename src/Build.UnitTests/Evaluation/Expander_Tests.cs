@@ -2713,12 +2713,12 @@ namespace Microsoft.Build.UnitTests.Evaluation
             Expander<ProjectPropertyInstance, ProjectItemInstance> expander = new Expander<ProjectPropertyInstance, ProjectItemInstance>(pg, FileSystems.Default);
 
             // Support enum combines as Enum.Parse expects them
-            string result = expander.ExpandIntoStringLeaveEscaped(@"$([System.Text.RegularExpressions.Regex]::IsMatch(`-42`, `^-?\d+(\.\d{2})?$`, `RegexOptions.IgnoreCase,RegexOptions.Singleline`))", ExpanderOptions.ExpandProperties, MockElementLocation.Instance);
+            string result = expander.ExpandIntoStringLeaveEscaped(@"$([System.Text.RegularExpressions.Regex]::IsMatch(`-42`, `^-?\d+(\.\d{2})?$`, `RegexOptions.IgnoreCase,RegexOptions.Singleline,RegexOptions.CultureInvariant`))", ExpanderOptions.ExpandProperties, MockElementLocation.Instance);
 
             Assert.Equal(@"True", result);
 
             // We support the C# style enum combining syntax too
-            result = expander.ExpandIntoStringLeaveEscaped(@"$([System.Text.RegularExpressions.Regex]::IsMatch(`-42`, `^-?\d+(\.\d{2})?$`, System.Text.RegularExpressions.RegexOptions.IgnoreCase|RegexOptions.Singleline))", ExpanderOptions.ExpandProperties, MockElementLocation.Instance);
+            result = expander.ExpandIntoStringLeaveEscaped(@"$([System.Text.RegularExpressions.Regex]::IsMatch(`-42`, `^-?\d+(\.\d{2})?$`, System.Text.RegularExpressions.RegexOptions.IgnoreCase|RegexOptions.Singleline|RegexOptions.CultureInvariant))", ExpanderOptions.ExpandProperties, MockElementLocation.Instance);
 
             Assert.Equal(@"True", result);
 

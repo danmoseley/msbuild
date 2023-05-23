@@ -22,7 +22,7 @@ namespace Microsoft.Build.Evaluation
     internal static class ConditionEvaluator
     {
         private static readonly Lazy<Regex> s_singlePropertyRegex = new Lazy<Regex>(
-            () => new Regex(@"^\$\(([^\$\(\)]*)\)$", RegexOptions.Compiled));
+            () => new Regex(@"^\$\(([^\$\(\)]*)\)$", RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
         /// <summary>
         /// Update our table which keeps track of all the properties that are referenced

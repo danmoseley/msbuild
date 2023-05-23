@@ -44,7 +44,7 @@ namespace TaskUsageLogger
     /// </remarks>
     public class TaskUsageLogger : Logger
     {
-        private static readonly Regex s_msbuildPropertyRegex = new Regex(@"[\$][\(](?<name>.*?)[\)]", RegexOptions.ExplicitCapture);
+        private static readonly Regex s_msbuildPropertyRegex = new Regex(@"[\$][\(](?<name>.*?)[\)]", RegexOptions.ExplicitCapture | RegexOptions.CultureInvariant);
         private static readonly char[] s_semicolonChar = { ';' };
         private static readonly char[] s_disallowedCharactersForExpansion = new char[] { '@', '%' };
         private static readonly char[] s_fullyQualifiedTaskNameSeperators = new char[] { '.', '+' };

@@ -31,7 +31,7 @@ namespace Microsoft.Build.Utilities
             if (!string.IsNullOrEmpty(BuildEnvironmentHelper.Instance.VisualStudioInstallRootDirectory))
             {
                 directoryPath = Regex.Replace(directoryPath, "%VSINSTALLDIR%",
-                    BuildEnvironmentHelper.Instance.VisualStudioInstallRootDirectory, RegexOptions.IgnoreCase);
+                    BuildEnvironmentHelper.Instance.VisualStudioInstallRootDirectory, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
             }
 
             DirectoryPath = Environment.ExpandEnvironmentVariables(directoryPath);

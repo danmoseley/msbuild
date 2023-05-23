@@ -29,7 +29,7 @@ namespace Microsoft.Build.Tasks
             () => new Regex(
                 AssemblyResolutionConstants.assemblyFoldersExSentinel +
                 "(?<REGISTRYKEYROOT>[^,]*),(?<TARGETRUNTIMEVERSION>[^,]*),(?<REGISTRYKEYSUFFIX>[^,]*)([,]*)(?<CONDITIONS>.*)}",
-                RegexOptions.IgnoreCase | RegexOptions.Compiled));
+                RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
         /// <summary>
         /// Delegate.

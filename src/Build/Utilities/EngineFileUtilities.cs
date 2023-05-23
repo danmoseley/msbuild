@@ -521,7 +521,7 @@ namespace Microsoft.Build.Internal
                 List<Regex> regexes = new List<Regex>();
                 foreach (string regex in wildCards.Split(MSBuildConstants.SemicolonChar))
                 {
-                    Regex item = new Regex(regex, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase);
+                    Regex item = new Regex(regex, RegexOptions.Compiled | RegexOptions.Singleline | RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
                     // trigger a match first?
                     item.IsMatch("foo");
                     regexes.Add(item);

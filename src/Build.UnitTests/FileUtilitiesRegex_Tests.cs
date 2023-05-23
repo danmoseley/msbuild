@@ -19,10 +19,10 @@ namespace Microsoft.Build.Engine.UnitTests
         // below are the legacy regex used before explcitly checking these patterns to reduce allocations
 
         // regular expression used to match file-specs comprising exactly "<drive letter>:" (with no trailing characters)
-        internal static readonly Regex DrivePattern = new Regex(@"^[A-Za-z]:$", RegexOptions.Compiled);
+        internal static readonly Regex DrivePattern = new Regex(@"^[A-Za-z]:$", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         // regular expression used to match file-specs beginning with "<drive letter>:"
-        internal static readonly Regex StartWithDrivePattern = new Regex(@"^[A-Za-z]:", RegexOptions.Compiled);
+        internal static readonly Regex StartWithDrivePattern = new Regex(@"^[A-Za-z]:", RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         private static readonly string s_baseUncPattern = string.Format(
             CultureInfo.InvariantCulture,
@@ -30,13 +30,13 @@ namespace Microsoft.Build.Engine.UnitTests
             '\\', '/');
 
         // regular expression used to match UNC paths beginning with "\\<server>\<share>"
-        internal static readonly Regex StartsWithUncPattern = new Regex(s_baseUncPattern, RegexOptions.Compiled);
+        internal static readonly Regex StartsWithUncPattern = new Regex(s_baseUncPattern, RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         // regular expression used to match UNC paths comprising exactly "\\<server>\<share>"
         internal static readonly Regex UncPattern =
             new Regex(
                 string.Format(CultureInfo.InvariantCulture, @"{0}$", s_baseUncPattern),
-                RegexOptions.Compiled);
+                RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         [Fact]
         public void DrivePatternIsMatchAllProperFormats()

@@ -45,7 +45,7 @@ namespace Microsoft.Build.Shared
         internal static readonly Lazy<Regex> itemVectorTransformPattern = new Lazy<Regex>(
             () =>
                 new Regex(itemVectorTransformSpecification,
-                    RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled));
+                    RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
         // description of an item vector transform, including the optional separator specification, but with no (named) capturing
         // groups -- see the WriteString() method for details
@@ -61,7 +61,7 @@ namespace Microsoft.Build.Shared
         internal static readonly Lazy<Regex> itemVectorTransformRawPattern = new Lazy<Regex>(
             () =>
                 new Regex(itemVectorTransformRawSpecification,
-                    RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled));
+                    RegexOptions.IgnorePatternWhitespace | RegexOptions.ExplicitCapture | RegexOptions.Compiled | RegexOptions.CultureInvariant));
 
         /**************************************************************************************************************************
          * WARNING: The regular expressions above MUST be kept in sync with the expressions in the ItemExpander class.

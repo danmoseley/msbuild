@@ -413,7 +413,7 @@ namespace Microsoft.Build.Tasks.Xaml
         /// </summary>
         private static bool PerformSwitchValueSubstition(CommandLineBuilder clb, CommandLineToolSwitch commandLineToolSwitch, string switchValue)
         {
-            Regex regex = new Regex(@"\[value]", RegexOptions.IgnoreCase);
+            Regex regex = new Regex(@"\[value]", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
             Match match = regex.Match(commandLineToolSwitch.SwitchValue);
             if (match.Success)
             {
@@ -646,7 +646,7 @@ namespace Microsoft.Build.Tasks.Xaml
             // characters *except* a [ or an ]. i.e., if "[ [ sdf ]" is passed, then we will 
             // match "[ sdf ]"
             string matchString = @"\[[^\[\]]+\]";
-            Regex regex = new Regex(matchString, RegexOptions.ECMAScript);
+            Regex regex = new Regex(matchString, RegexOptions.ECMAScript | RegexOptions.CultureInvariant);
             MatchCollection matches = regex.Matches(CommandLineTemplate);
 
             int indexOfEndOfLastSubstitution = 0;

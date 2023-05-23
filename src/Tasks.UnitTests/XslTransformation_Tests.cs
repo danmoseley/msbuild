@@ -50,7 +50,7 @@ namespace Microsoft.Build.UnitTests
         /// <summary>
         /// The "surround" regex.
         /// </summary>
-        private readonly Regex _surroundMatch = new Regex("surround", RegexOptions.Multiline | RegexOptions.Compiled);
+        private readonly Regex _surroundMatch = new Regex("surround", RegexOptions.Multiline | RegexOptions.Compiled | RegexOptions.CultureInvariant);
 
         /// <summary>
         /// The contents of xmldocument for tests.

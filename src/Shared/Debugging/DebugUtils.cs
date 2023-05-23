@@ -62,7 +62,7 @@ namespace Microsoft.Build.Shared.Debugging
 
             NodeMode ScanNodeMode(string input)
             {
-                var match = Regex.Match(input, @"/nodemode:(?<nodemode>[12\s])(\s|$)", RegexOptions.IgnoreCase);
+                var match = Regex.Match(input, @"/nodemode:(?<nodemode>[12\s])(\s|$)", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
 
                 if (!match.Success)
                 {
