@@ -134,9 +134,7 @@ namespace Microsoft.Build.BackEnd.Logging
 
             if (buildEvent.ProjectFile == null && buildEventContext.ProjectContextId != BuildEventContext.InvalidProjectContextId)
             {
-                _projectFileMap.TryGetValue(buildEventContext.ProjectContextId, out string projectFile);
-                ErrorUtilities.VerifyThrow(projectFile != null, "ContextID {0} should have been in the ID-to-project file mapping but wasn't!", buildEventContext.ProjectContextId);
-                buildEvent.ProjectFile = projectFile;
+                buildEvent.ProjectFile = GetAndVerifyProjectFileFromContext(buildEventContext);
             }
 
             ProcessLoggingEvent(buildEvent);
@@ -174,9 +172,7 @@ namespace Microsoft.Build.BackEnd.Logging
                 buildEvent.BuildEventContext = buildEventContext;
                 if (buildEvent.ProjectFile == null && buildEventContext.ProjectContextId != BuildEventContext.InvalidProjectContextId)
                 {
-                    _projectFileMap.TryGetValue(buildEventContext.ProjectContextId, out string projectFile);
-                    ErrorUtilities.VerifyThrow(projectFile != null, "ContextID {0} should have been in the ID-to-project file mapping but wasn't!", buildEventContext.ProjectContextId);
-                    buildEvent.ProjectFile = projectFile;
+                    buildEvent.ProjectFile = GetAndVerifyProjectFileFromContext(buildEventContext);
                 }
 
                 ProcessLoggingEvent(buildEvent);
@@ -325,10 +321,8 @@ namespace Microsoft.Build.BackEnd.Logging
 
             buildEvent.BuildEventContext = buildEventContext;
             if (buildEvent.ProjectFile == null && buildEventContext.ProjectContextId != BuildEventContext.InvalidProjectContextId)
-            {
-                _projectFileMap.TryGetValue(buildEventContext.ProjectContextId, out string projectFile);
-                ErrorUtilities.VerifyThrow(projectFile != null, "ContextID {0} should have been in the ID-to-project file mapping but wasn't!", buildEventContext.ProjectContextId);
-                buildEvent.ProjectFile = projectFile;
+            {          
+                buildEvent.ProjectFile = GetAndVerifyProjectFileFromContext(buildEventContext);
             }
 
             ProcessLoggingEvent(buildEvent);
@@ -562,7 +556,7 @@ namespace Microsoft.Build.BackEnd.Logging
                     // So we only need this sanity check for the in-proc node.
                     if (nodeBuildEventContext.NodeId == Scheduler.InProcNodeId)
                     {
-                        ErrorUtilities.ThrowInternalError("ContextID {0} should have been in the ID-to-project file mapping but wasn't!", projectContextId);
+                        ThrowMissingContextIdMapping(projectContextId);
                     }
 
                     _projectFileMap[projectContextId] = projectFile;
